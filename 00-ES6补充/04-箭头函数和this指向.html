@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //箭头函数：也是一种定义函数的方法
+    //1.定义函数的方法：function
+    const a = function () {
+        
+    }
+    //2.对象字面量中定义函数
+    const obj1 ={
+        b () {
+
+        }
+    }
+    //3.ES6中的箭头函数
+    // const c = (参数列表) => {
+    // }
+    const c = () => {
+    }
+
+    //箭头函数参数问题
+    //1.两个参数
+    const sum = (num1,num2) => {
+        return num1 +num2
+    }
+    //2.一个参数:括号可以省略
+    const power = num => {
+        return num * num
+    }
+
+    //函数中
+    //代码中若只有一行，大括号可以省略,会自动返回执行的值
+    const mul = (num1,num2) => num1 *num2
+
+
+    //箭头函数中的this是如何查找的？
+    //向外层作用域中，一层层查找this，直到有this的定义为止
+
+    setTimeout(function () {
+        console.log(this);  //window
+    },1000)
+
+    setTimeout(() => {
+        console.log(this); //window
+    },1000)
+
+    const obj = {
+        a(){
+            setTimeout(function () {
+                console.log(this); //window
+            },1000)
+
+            setTimeout(() => {
+                console.log(this); // obj对象
+            })
+
+        }
+    }
+
+obj.a()
+</script>
+</body>
+</html>

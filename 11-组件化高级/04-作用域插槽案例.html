@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+<cpn></cpn>
+
+<cpn><!--之前的版本是slot-scope 现在的版本是v-slot，child 就是子组件中定义的属性-->
+    <template v-slot="father">
+        <span >{{father.child.join(' * ')}}</span>
+    </template>
+</cpn>
+
+<cpn>
+    <template v-slot="l">
+        <span >{{father.child.join(' - ')}}</span>
+    </template>
+</cpn>
+
+</div>
+
+<template id="cpn">
+    <div><!--child:自定义的属性-->
+        <slot :child="Languages">
+            <ul>
+                <li v-for="item in Languages">{{item}}</li>
+            </ul>
+        </slot>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello'
+        },
+        components:{
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        Languages: ['JavaScript', 'C++', 'C#', 'python']
+                    }
+                }
+            }
+        }
+    })
+    </script>
+
+</body>
+</html>

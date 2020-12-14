@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+<childcpn @add="changetotal" @sub="changetotal"></childcpn>
+</div>
+
+<template id="childcpn">
+    <div>
+        <h2>当前计数：{{counter}}</h2>
+        <button @click="sub">-1</button>
+        <button @click="add">+1</button>
+    </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            total:0
+        },
+        methods:{
+            changetotal(counter){
+                this.total = counter
+            }
+        },
+        components:{
+            childcpn:{
+                template:'#childcpn',
+                data(){
+                    return{
+                        counter:0
+                    }
+                },
+                methods:{
+                    add(){
+                        this.counter++;
+                        this.$emit('add',this.counter)
+                    },
+                    sub(){
+                        this.counter--;
+                        this.$emit('sub',this.counter)
+                    }
+                }
+            }
+
+        }
+    })
+    </script>
+</body>
+</html>

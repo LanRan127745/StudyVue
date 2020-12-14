@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <cpn2></cpn2>
+    <cpn1></cpn1>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+    //创建第一个组件构造器(子组件)
+    const cpnC1 = Vue.extend({
+        template:`
+        <div>
+        <h2>title1</h2>
+        <p>content1</p>
+        </div>
+        `
+    })
+
+    //创建第二个组件构造器(父组件)
+    const cpnC2 = Vue.extend({
+        template:`
+        <div>
+        <h2>title2</h2>
+        <p>content2</p>
+        <cpn1></cpn1>
+        </div>
+        `,
+        //在父组件中注册，只能在父组件中使用
+        components:{
+            cpn1:cpnC1
+        }
+    })
+    //root根组件
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello'
+        },
+        //此时在挂载的元素上只能使用父组件，若是想要子组件也能在使用，必须也进行注册
+        components:{
+            cpn2:cpnC2,
+            cpn1:cpnC1
+        }
+    })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--1、直接拼接：语法过于繁琐-->
+    <h2>{{firstName}} {{lastName}}</h2>
+
+    <!--2、通过定义methods 会调用3次fullName()-->
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+
+    <!--3、通过定义computed 会调用1次fullname-->
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            firstName:'Kobe',
+            lastName:'bryant'
+        },
+        methods:{
+            getFullName:function () {
+                return this.firstName +' '+this.lastName;
+            }
+        },
+        computed:{
+            fullName:function () {
+                //调用的时候会判断firstName和lastName的值有没有发生变化
+                //没有发生变化，就会将缓存中的结果直接返回，而不是重新进行计算
+                return this.firstName +' '+this.lastName;
+            }
+        }
+    })
+    </script>
+
+</body>
+</html>

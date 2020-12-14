@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<ul>
+    <li v-for="item in letters" >{{item}}</li>
+</ul>
+    <button @click="btnClick">按钮</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+           letters:['a','f','c','d','e']
+        },
+        methods:{
+            btnClick(){
+                //1.push():往数组最后一个位置添加元素 可以同时传多个参数
+                //  this.letters.push('push','push1')
+
+                //2.pop():删除数组中最后一个元素
+                //this.letters.pop()
+
+                //3.shift():删除数组中第一个元素
+                //this.letters.shift()
+
+                //4.unshift():在数组最前面添加元素 也可以有多个参数
+                //this.letters.unshift("unshift",'unshift1')
+
+                //5.splice():删除元素/插入元素/替换元素
+                //第一个参数表示要开始进行操作的位置
+                //删除元素：
+                // （1）没有第二个元素时，表示从开始位置删除到数组结束
+                //this.letters.splice(1)
+                //（2）有第二个元素时表示删除的结束位置
+                //替换元素：
+                //第二个参数，表示我们要替换几个元素，后面是用于替换前面的元素
+                //换个理解方式，第二个参数表示要删除元素个数，再添加后面的元素（源码中）
+                //this.letters.splice(1,3,'x','y','z','m')
+                //this.letters.splice(1,3,'x','y')
+                //插入元素：第二个参数传入0，后面跟上要插入的元素
+                //this.letters.splice(1,0,'x','y')
+
+                //6.sort():排序
+                //this.letters.sort()
+
+                //7.reverse():反转
+                //this.letters.reverse()
+
+                //注意：通过数组下标修改值的不是响应式的
+                //this.letters[0] = 'aaa'
+                //如何解决：两种方法
+                this.letters.splice(0,1,'aaa')
+                //set(要修改的对象，索引值，修改后的值)
+                Vue.set(letters,0,'aaa')
+            }
+        }
+    })
+
+    //扩展：可变参数，当传入不定长参数，使用...num表示一个数组来存储数据
+    function sum(...num) {
+        console.log(num);
+    }
+    sum(1,2,3,4,5,6,7,8,9)
+
+    </script>
+</body>
+</html>

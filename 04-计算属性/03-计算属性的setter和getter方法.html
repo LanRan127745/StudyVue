@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<h2>{{fullname}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+           firstName:'Kobe',
+            lastName:'bryant'
+        },
+        computed:{
+            fullName:{
+                //计算属性一般只需要实现get方法，set方法不需要实现
+                // 不希望随意更改设置值，只读属性
+                set:function () {
+                    //一般为空
+                },
+                get:function () {
+                    return 'aaa'
+                }
+            },
+            //所以为了简化，将变成常使用的格式，所以将fullName当成一个属性来用
+            fullName:function () {
+                return 'aaa'
+            },
+            //若是一定要使用setter方法也是可以的
+            fullname:{
+                //要在set中修改值，需要传入要修改的值
+                set:function (newValue) {
+                    const names = newValue.split(' ');
+                    this.firstName = names[0];
+                    this.lastName  = names[1];
+                },
+                get:function () {
+                    return this.firstName+' '+this.lastName;
+                }
+            }
+
+
+        }
+    })
+    </script>
+</body>
+</html>

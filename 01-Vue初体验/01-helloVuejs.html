@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="title">{{message}}{{name}}</div>
+
+
+<script src="../js/vue.js"></script>
+<script>
+    //let(变量)/const(常量)
+    //编程范式：声明式编程  编写的代码可以做到响应式的
+
+
+    //创建Vue实例对象,vue是内部定义的
+    const title = new Vue({
+
+        //el属性：该属性决定了这个Vue对象挂载到哪一个元素上，这里挂载到了id为title的元素上
+        el:'#title',  //用于挂载要管理的元素
+
+        //data属性：该属性中通常会存储一些数据
+                //1、这些数据可以是我们直接定义出来的，像下面那样
+                //2、也可能是来自网络，从服务器加载的
+        data:{
+            message:'the first Vue!',
+            name:'zhengzhiwei'
+        }
+
+    })
+
+</script>
+</body>
+</html>

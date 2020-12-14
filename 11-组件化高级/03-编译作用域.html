@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+    <!--在自己的作用域（Vue实例中data）中查找变量isShow-->
+    <cpn v-show="isShow"></cpn>
+</div>
+
+<template id="cpn">
+    <div>
+        <!--在自己的作用域（子组件中）中查找变量isShow-->
+        <h2 v-show="isShow">我是组件</h2>
+        <p>我是内容</p>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            isShow:true
+        },
+        components:{
+            cpn:{
+                template:'#cpn',
+                data(){
+                    return{
+                        isShow:true
+                    }
+                }
+            }
+        }
+    })
+    </script>
+
+</body>
+</html>

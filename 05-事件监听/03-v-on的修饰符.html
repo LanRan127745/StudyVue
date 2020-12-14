@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--这种情况下会产生事件冒泡,通过 .stop修饰符 来阻止冒泡-->
+    <div id="app" @click="divClick">
+        aaaaa
+
+        <!--1、.stop 修饰符的使用-->
+        <button @click.stop="btnClick">按钮</button>
+
+        <!--2、.prevent修饰符的使用-->
+        <!--不希望通过表单提交按钮实现，而是通过点击事件来实现-->
+        <form action="baidu">
+            <input type="submit" value="提交" @click.prevent="preventClick">
+        </form>
+
+        <!--3、监听某个键盘的键帽的点击
+        keydown 键帽按下    keyup   键帽回弹
+        某个特定的键：例如enter键  keyup.enter
+        -->
+        <input type="text" @keyup.enter="clickKey">
+
+        <!--4、.once修饰符的使用-->
+        <!--只监听一次-->
+        <button @click.once="onceCLick">按钮</button>
+
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello'
+            },
+            methods:{
+                btnClick(){
+                    console.log("btnClick");
+                },
+                divClick(){
+                    console.log("divClick");
+                },
+                preventClick(){
+                    console.log("preventClick");
+                },
+                clickKey(){
+                    console.log("clickKey");
+                },
+                onceCLick(){
+                    console.log("onceCLick");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

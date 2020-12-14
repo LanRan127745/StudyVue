@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--1、列表单选-->
+    <select name="fruit"  v-model="fruit">
+        <option value="Apple" >Apple</option>
+        <option value="Banana" >Banana</option>
+        <option value="Pear" >Pear</option>
+        <option value="Cheery" >Cheery</option>
+    </select>
+
+    <!--2、列表多选 注意：选择的时候是拉选 mutiple表示多选属性-->
+    <select name="fruit"  v-model="fruits" multiple>
+        <option value="Apple" >Apple</option>
+        <option value="Banana" >Banana</option>
+        <option value="Pear" >Pear</option>
+        <option value="Cheery" >Cheery</option>
+    </select>
+
+
+    <h2>{{fruits}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello',
+            fruit:'Apple',
+            fruits:[],
+            originFruit:['Apple','banana','pear','cheery','potato']
+        }
+    })
+    </script>
+
+</body>
+</html>

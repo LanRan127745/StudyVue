@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--1、事件调用的方法没有参数，有无括号都是可以的-->
+    <button @click="btn1Click()">按钮1</button>
+    <button @click="btn1Click">按钮2</button>
+
+    <!--2、定义事件正确写法-->
+    <button @click="btn2Click(123)">按钮3</button>
+
+    <!--3、函数需要传参，但是有括号没有参数，形参则为 undefined-->
+    <button @click="btn2Click()">按钮4</button>
+
+    <!--4、在定义事件时，写函数时省略了小括号，但是方法本身是需要一个参数的，这个时候，
+    Vue会默认将浏览器生产的event事件对象作为参数传入方法，就是MouseEvent -->
+    <button @click="btn2Click">按钮5</button>
+
+    <!--5、方法定义时，我们需要event对象，同时又需要其他参数-->
+    <!--调用方式，如何手动的获取到浏览器参数的event对象：$event-->
+    <button @click="btn3Click(123,$event)">按钮6</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello'
+        },
+        methods:{
+            btn1Click(){
+                console.log("btn1Click");
+            },
+            btn2Click(a){
+                console.log("----",a);
+            },
+            btn3Click(a,event){
+                console.log("++++",a,event);
+            }
+        }
+    })
+
+
+    //如果函数需要参数，但是没有传入，name函数的形参为undefined
+/*    function name(name){
+        console.log(name);
+    }
+    name()*/
+    </script>
+
+
+</body>
+</html>
